@@ -9,7 +9,10 @@ import io.gatling.javaapi.http.HttpDsl.*
  */
 class FollowUsersSimulation : Simulation() {
 
-    val feeder = csv("all_users.csv").queue()
+    val users = Integer.getInteger("users", 1)
+    val duration: Long = java.lang.Long.getLong("duration", 5L)
+    val csvFileName: String = System.getProperty("csvFileName", "all_users.csv")
+    val feeder = csv(csvFileName).random()
     val baseUrl = "http://145.108.225.7:8080"
 
     private val userLogin = exec(
@@ -468,7 +471,7 @@ class FollowUsersSimulation : Simulation() {
 
     init {
         setUp(
-            follow_10_users.injectOpen(rampUsers(1).during(5))
+            follow_10_users.injectOpen(rampUsers(users).during(duration))
         ).protocols(httpProtocol)
     }
 }

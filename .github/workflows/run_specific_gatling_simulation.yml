@@ -1,0 +1,44 @@
+name: Run Specific Gatling Simulation
+
+on:
+  workflow_dispatch:
+    inputs:
+      simulationClass:
+        description: 'Please Select a Gatling Simulation Class'
+        required: true
+        type: choice
+        default: 'social_network.ComposePostSimulation'
+        options:
+          - 'social_network.ComposePostSimulation'
+          - 'social_network.FollowUsersSimulation'
+          - 'bookstore.UserRegistrationSimulation'
+          - 'bookstore.BuyBooksSimulation'
+      users:
+        description: 'Number of users to be Ramped up'
+        required: true
+        default: '1'
+      duration:
+        description: 'Ramp up duration'
+        required: true
+        default: '5'
+      csvFileName:
+        description: 'Name of the CSV file to be used'
+        required: true
+        default: 'test_users.csv'
+
+jobs:
+  run-gatling:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Java 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+
+      - name: Run Gatling Simulation
+        run: |
+          ./gradlew gatlingRun --simulation=${{ github.event.inputs.simulationClass }} -Dusers=${{ github.event.inputs.users }} -Dduration=${{ github.event.inputs.duration }} -DcsvFileName=${{ github.event.inputs.csvFileName }}

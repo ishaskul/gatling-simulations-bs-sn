@@ -10,7 +10,10 @@ import io.gatling.javaapi.http.HttpDsl.*
  */
 class UserRegistrationSimulation : Simulation() {
 
-  val feeder = csv("all_users.csv").queue()
+  val users = Integer.getInteger("users", 1)
+  val duration: Long = java.lang.Long.getLong("duration", 5L)
+  val csvFileName: String = System.getProperty("csvFileName", "all_users.csv")
+  val feeder = csv(csvFileName).queue()
   val baseUrl = "http://145.108.225.7:8765"
 
   private val userSignUp = exec(
@@ -185,7 +188,7 @@ class UserRegistrationSimulation : Simulation() {
 
   init {
     setUp(
-      sign_up.injectOpen(rampUsers(1).during(5))
+      sign_up.injectOpen(rampUsers(users).during(duration))
     ).protocols(httpProtocol)
   }
 }

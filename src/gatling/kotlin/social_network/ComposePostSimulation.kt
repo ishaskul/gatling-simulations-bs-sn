@@ -10,7 +10,10 @@ import io.gatling.javaapi.http.HttpDsl.*
  */
 class ComposePostSimulation : Simulation() {
 
-    val feeder = csv("all_users.csv").random()
+    val users = Integer.getInteger("users", 1)
+    val duration: Long = java.lang.Long.getLong("duration", 5L)
+    val csvFileName: String = System.getProperty("csvFileName", "all_users.csv")
+    val feeder = csv(csvFileName).random()
     val baseUrl = "http://145.108.225.7:8080"
 
     private val userLogin = exec(
@@ -398,7 +401,7 @@ class ComposePostSimulation : Simulation() {
 
     init {
         setUp(
-            compose_post.injectOpen(rampUsers(28000).during(300))
+            compose_post.injectOpen(rampUsers(users).during(duration))
         ).protocols(httpProtocol)
     }
 }
