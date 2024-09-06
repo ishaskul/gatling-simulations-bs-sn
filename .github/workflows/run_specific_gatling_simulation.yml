@@ -41,5 +41,16 @@ jobs:
           distribution: 'temurin'
 
       - name: Run Gatling Simulation
+        id: run_sim
         run: |
-          ./gradlew gatlingRun --simulation=${{ github.event.inputs.simulationClass }} -Dusers=${{ github.event.inputs.users }} -Dduration=${{ github.event.inputs.duration }} -DcsvFileName=${{ github.event.inputs.csvFileName }}
+          OUTPUT=$(./gradlew gatlingRun --simulation=${{ github.event.inputs.simulationClass }} -Dusers=${{ github.event.inputs.users }} -Dduration=${{ github.event.inputs.duration }} -DcsvFileName=${{ github.event.inputs.csvFileName }})
+          echo "$OUTPUT"
+          REPORT_DIR=$(echo "$OUTPUT" | grep -oP '(?<=Reports generated, please open the following file: file://).*index.html' | sed 's#/index.html##')
+          echo "Report directory: $REPORT_DIR"
+          echo "::set-output name=report_dir::$REPORT_DIR"
+
+      - name: Upload Gatling Report as an Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: gatling-report
+          path: ${{ steps.run_sim.outputs.report_dir }}/*.html
