@@ -40,7 +40,7 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
 
-      - name: Run Gatling Simulation
+      - name: Run Gatling Simulation and Extract Report Directory
         id: run_sim
         run: |
           OUTPUT=$(./gradlew gatlingRun --simulation=${{ github.event.inputs.simulationClass }} -Dusers=${{ github.event.inputs.users }} -Dduration=${{ github.event.inputs.duration }} -DcsvFileName=${{ github.event.inputs.csvFileName }})
@@ -54,13 +54,12 @@ jobs:
 
       - name: Zip Gatling Report Directory
         run: |
-          REPORT_DIR=${{ steps.run_sim.outputs.report_dir }}
+          REPORT_DIR="${{ steps.run_sim.outputs.report_dir }}"
           ZIP_NAME="${{ steps.run_sim.outputs.report_name }}.zip"
           zip -r "$ZIP_NAME" "$REPORT_DIR"
-          echo "::set-output name=zip_file::$ZIP_NAME"
+          echo "ZIP_NAME=$ZIP_NAME" >> $GITHUB_ENV
 
       - name: Upload Gatling Report Zip as Artifact
         uses: actions/upload-artifact@v3
         with:
           name: gatling-report
-          path: ${{ steps.zip.outputs.zip_file }}
