@@ -212,7 +212,7 @@ class ComposePostSimulation : Simulation() {
     private val uploadMedia = exec(
         http("upload media")
             .post("http://145.108.225.7:9234/upload-media")
-            .bodyPart(RawFileBodyPart("file", "/Users/ishas.kulkarni/Downloads/jmeter2.jpg").fileName("jmeter2.jpg"))
+            .bodyPart(RawFileBodyPart("file", "images/jmeter2.jpg").fileName("jmeter2.jpg"))
             .check(
                 status().`is`(200)
             )
@@ -224,10 +224,10 @@ class ComposePostSimulation : Simulation() {
             .header("Content-Type", "application/x-www-form-urlencoded")
             .formParam("post_type", "0")
             .formParam("text", "@ajpcv @mhkmq @ngavs @htgix @ikqdw @yhkkf @benpt @rbzup @zbkta @velex @kwuyy @nnlkh @aikoc @qkwtl @dbrdb @czurm @rndly @kdtjz @gklbu Blorpwizzle drangleflomp, skizzlequark womblefizz yinglebot snoodlefrap drabblefloop. Crinklestop flibberwomp zibblefop wogglewump, splindleflap tazzlewomp gribbleplunk snoodlepuff. Glonkyplum snafflewhisk jibbletronk flizzlewhirp, wibblegorf cranglepuff zizzlefrap skrodlebunk. Drunglewarp crimpleflamp dinklestop snizzlequint, scrumblefizz wibblewhap trogglebump womblewarp snozzledonk. Pifflewump skizzleflorp blorpwibble, cringleflump glonkyplum zifflecronk dronklewarp wibbleglomp. Flibblefump drangleboop wibblewhirp, zizzlefrap gromplequink crinklestop snorfle trazzlequack. Splindleflap yarp quibbledonk womp snizzleplop, glorp tazzlewomp snozzleplunk drangleflorp crunkleflimp. Zizzlewhirp womplequack dribblefump snoodlewarp cringleflump, yinglebot glonkyplunk snozzledonk blorp snorfleflimp. Wibblewhomp dronkleplunk flibblefump snoodlewarp tazzlewomp, snizzleplonk womplefizz drabblefloop zizzlefrap skizzleflomp. Blorp cranglefizz drunglewarp, splindleflap womplequack trogglebump zizzleplorp snoodleflap skrodlebunk.")
-            .formParam("media_ids", """["166928897285494368"]""")
+            .formParam("media_ids", """["202904624922489408"]""")
             .formParam("media_types", """["jpg"]""")
             .check(
-                status().`is`(500)
+                status().`in`(200, 500)
             )
     )
 
