@@ -32,7 +32,6 @@ class ComposePostSimulation : Simulation() {
 
     private val getMainHtml = exec { session ->
         val username = session.getString("username")
-        println("currrent_user: " + username)
         session
     }.exec(
         http("Check Main Page")
