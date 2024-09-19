@@ -224,7 +224,7 @@ class ComposePostSimulation : Simulation() {
             .header("Content-Type", "application/x-www-form-urlencoded")
             .formParam("post_type", "0")
             .formParam("text", "@ajpcv @mhkmq @ngavs @htgix @ikqdw @yhkkf @benpt @rbzup @zbkta @velex @kwuyy @nnlkh @aikoc @qkwtl @dbrdb @czurm @rndly @kdtjz @gklbu Blorpwizzle drangleflomp, skizzlequark womblefizz yinglebot snoodlefrap drabblefloop. Crinklestop flibberwomp zibblefop wogglewump, splindleflap tazzlewomp gribbleplunk snoodlepuff. Glonkyplum snafflewhisk jibbletronk flizzlewhirp, wibblegorf cranglepuff zizzlefrap skrodlebunk. Drunglewarp crimpleflamp dinklestop snizzlequint, scrumblefizz wibblewhap trogglebump womblewarp snozzledonk. Pifflewump skizzleflorp blorpwibble, cringleflump glonkyplum zifflecronk dronklewarp wibbleglomp. Flibblefump drangleboop wibblewhirp, zizzlefrap gromplequink crinklestop snorfle trazzlequack. Splindleflap yarp quibbledonk womp snizzleplop, glorp tazzlewomp snozzleplunk drangleflorp crunkleflimp. Zizzlewhirp womplequack dribblefump snoodlewarp cringleflump, yinglebot glonkyplunk snozzledonk blorp snorfleflimp. Wibblewhomp dronkleplunk flibblefump snoodlewarp tazzlewomp, snizzleplonk womplefizz drabblefloop zizzlefrap skizzleflomp. Blorp cranglefizz drunglewarp, splindleflap womplequack trogglebump zizzleplorp snoodleflap skrodlebunk.")
-            .formParam("media_ids", """["202904624922489408"]""")
+            .formParam("media_ids", """["1087010906534684032"]""")
             .formParam("media_types", """["jpg"]""")
             .check(
                 status().`in`(200, 500)
