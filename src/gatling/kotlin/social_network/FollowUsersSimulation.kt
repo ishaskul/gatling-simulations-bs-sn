@@ -12,7 +12,7 @@ class FollowUsersSimulation : Simulation() {
     val users = Integer.getInteger("users", 1)
     val duration: Long = java.lang.Long.getLong("duration", 5L)
     val csvFileName: String = System.getProperty("csvFileName", "all_users_25k.csv")
-    val feeder = csv(csvFileName).queue()
+    val feeder = csv(csvFileName).random()
     val baseUrl = "http://145.108.225.7:8080"
 
     private val userLogin = exec(
