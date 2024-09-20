@@ -11,7 +11,7 @@ class FollowUsersSimulation : Simulation() {
 
     val users = Integer.getInteger("users", 1)
     val duration: Long = java.lang.Long.getLong("duration", 5L)
-    val csvFileName: String = System.getProperty("csvFileName", "all_users.csv")
+    val csvFileName: String = System.getProperty("csvFileName", "all_users_25k.csv")
     val feeder = csv(csvFileName).queue()
     val baseUrl = "http://145.108.225.7:8080"
 
@@ -334,6 +334,116 @@ class FollowUsersSimulation : Simulation() {
     )
 
 
+    private val unfollowUser1 = exec(
+        http("unfollow user 1")
+            .post("/api/user/unfollow")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .formParam("user_name", "#{username}")
+            .formParam("followee_name", "bqqbf")
+            .check(
+                status().`is`(200)
+            )
+    )
+
+    private val unfollowUser2 = exec(
+        http("unfollow user 2")
+            .post("/api/user/unfollow")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .formParam("user_name", "#{username}")
+            .formParam("followee_name", "xfvio")
+            .check(
+                status().`is`(200)
+            )
+    )
+
+    private val unfollowUser3 = exec(
+        http("unfollow user 3")
+            .post("/api/user/unfollow")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .formParam("user_name", "#{username}")
+            .formParam("followee_name", "jldiz")
+            .check(
+                status().`is`(200)
+            )
+    )
+
+    private val unfollowUser4 = exec(
+        http("unfollow user 4")
+            .post("/api/user/unfollow")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .formParam("user_name", "#{username}")
+            .formParam("followee_name", "toeoo")
+            .check(
+                status().`is`(200)
+            )
+    )
+
+    private val unfollowUser5 = exec(
+        http("unfollow user 5")
+            .post("/api/user/unfollow")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .formParam("user_name", "#{username}")
+            .formParam("followee_name", "pecny")
+            .check(
+                status().`is`(200)
+            )
+    )
+
+    private val unfollowUser6 = exec(
+        http("unfollow user 6")
+            .post("/api/user/unfollow")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .formParam("user_name", "#{username}")
+            .formParam("followee_name", "cueql")
+            .check(
+                status().`is`(200)
+            )
+    )
+
+    private val unfollowUser7 = exec(
+        http("unfollow user 7")
+            .post("/api/user/unfollow")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .formParam("user_name", "#{username}")
+            .formParam("followee_name", "eerko")
+            .check(
+                status().`is`(200)
+            )
+    )
+
+    private val unfollowUser8 = exec(
+        http("unfollow user 8")
+            .post("/api/user/unfollow")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .formParam("user_name", "#{username}")
+            .formParam("followee_name", "ahddk")
+            .check(
+                status().`is`(200)
+            )
+    )
+
+    private val unfollowUser9 = exec(
+        http("unfollow user 9")
+            .post("/api/user/unfollow")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .formParam("user_name", "#{username}")
+            .formParam("followee_name", "bqaho")
+            .check(
+                status().`is`(200)
+            )
+    )
+
+    private val unfollowUser10 = exec(
+        http("unfollow user 10")
+            .post("/api/user/unfollow")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .formParam("user_name", "#{username}")
+            .formParam("followee_name", "nuroh")
+            .check(
+                status().`is`(200)
+            )
+    )
+
 
     val httpProtocol =
         http.baseUrl(baseUrl)
@@ -466,7 +576,17 @@ class FollowUsersSimulation : Simulation() {
         getContactJs2,
         getButtonClickJs,
         getFollowerApi,
-        getFolloweeApi
+        getFolloweeApi,
+        unfollowUser1,
+        unfollowUser2,
+        unfollowUser3,
+        unfollowUser4,
+        unfollowUser5,
+        unfollowUser6,
+        unfollowUser7,
+        unfollowUser8,
+        unfollowUser9,
+        unfollowUser10
     )
 
     init {
